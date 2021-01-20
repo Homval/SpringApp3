@@ -5,8 +5,10 @@
     <title>Person</title>
 </head>
 <body>
-    <p th:text="${person.getName()}"></p>
-    <p th:text="${person.getId()}"></p>
+    <p th:text="${person.getName() + ', ' + person.getAge()}">value</p>
+    <p th:text="${'Email: ' + person.getEmail()}">value</p>
+    <p th:text="${person.getId()}">value</p>
+
 
     <br/>
 
