@@ -11,9 +11,9 @@ import java.util.List;
 public class PersonDAO {
     private int PEOPLE_COUNT;
 
-    private static final String URL = "jdbc:postresql://localhost:5432/first_db";
-    private static final String USERNAME = "postrgres";
-    private static final String PASSWORD = "postrgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "postgres";
 
     private static Connection connection;
 
@@ -62,8 +62,14 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-//        person.setId(++PEOPLE_COUNT);
-//        people.add(person);
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "INSERT INTO person VALUES(" + person.getId() + ",'" + person.getName() + "'," +
+                    person.getAge() + ",'" + person.getEmail() + "')";
+            statement.executeUpdate(SQL);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void update(int id, Person newPerson) {
